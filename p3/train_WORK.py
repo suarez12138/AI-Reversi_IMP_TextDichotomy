@@ -6,7 +6,7 @@ from sklearn.svm import LinearSVC
 import argparse
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-learn = 17500
+learn = 20000
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -29,7 +29,7 @@ if __name__ == '__main__':
     vectorizer = TfidfVectorizer()
     train_v = vectorizer.fit_transform(text)
 
-    svm = LinearSVC()
+    svm = LinearSVC(C=1)
     svm.fit(train_v, result)
 
     inp = []
@@ -37,6 +37,10 @@ if __name__ == '__main__':
     for i in range(25000 - learn):
         inp.append(data[i + learn]['data'])
         r.append(data[i + learn]['label'])
+    # for i in range(learn):
+    #     inp.append(data[i]['data'])
+    #     r.append(data[i]['label'])
+
     # file = open('testdataexample')
     # information = file.readline()
     # triminfor = information.split('"')
