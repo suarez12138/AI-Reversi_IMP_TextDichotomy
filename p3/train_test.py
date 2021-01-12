@@ -15,9 +15,9 @@ if __name__ == '__main__':
     for e in data:
         text.append(e['data'])
         result.append(e['label'])
-    vectorizer = TfidfVectorizer(ngram_range=(1, 2), sublinear_tf=True)
+    vectorizer = TfidfVectorizer(ngram_range=(1, 2), sublinear_tf=True, lowercase=False)
     train_v = vectorizer.fit_transform(text)
-    svm = LinearSVC(C=1.053, intercept_scaling=1.41, multi_class='crammer_singer', class_weight='balanced')
+    svm = LinearSVC(C=1.03, intercept_scaling=0.96, multi_class='crammer_singer', class_weight='balanced')
     svm.fit(train_v, result)
 
     inp = []
